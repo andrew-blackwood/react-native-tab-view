@@ -40,7 +40,7 @@ export default class TouchableItem extends React.Component<Props> {
 
     if (Platform.OS === 'android' && Platform.Version >= LOLLIPOP) {
       return (
-        <View style={styles.outerContainer}>
+        <View style={[styles.outerContainer, style]}>
           <RNGHTouchableNativeFeedback
             {...rest}
             background={{
@@ -48,8 +48,8 @@ export default class TouchableItem extends React.Component<Props> {
               color: pressColor,
               type: 'Ripple',
             }}
-            containerStyle={styles.container}
-            style={styles.button}
+            containerStyle={[styles.container, style]}
+            style={[styles.button, style]}
           >
             <View style={style}>{React.Children.only(children)}</View>
           </RNGHTouchableNativeFeedback>
@@ -68,16 +68,13 @@ export default class TouchableItem extends React.Component<Props> {
 const styles = StyleSheet.create({
   button: {
     justifyContent: 'center',
-    flex: 1,
     flexDirection: 'row',
   },
   container: {
-    flex: 1,
     flexDirection: 'row',
   },
   outerContainer: {
     borderRadius: 100,
-    flex: 1,
     flexDirection: 'row',
     overflow: 'hidden',
   },
